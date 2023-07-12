@@ -1,9 +1,18 @@
-import { Text } from 'react-native';
+import { InstantSearch } from 'react-instantsearch-hooks';
+import { Text, View } from 'react-native';
+import { algoliaSearchClient } from '../../lib/algoliaClient';
+import React from 'react';
+import { SearchBox } from '../../components/searchBox/SearchBox';
+import { Layout } from '../../components/layout/Layout';
+import { Categories } from '../../components/categories/Categories';
 
 export default function Page() {
   return (
-    <Text className='flex-1 text-base text-red-600 bg-[#FDFDFD]'>
-      Home page
-    </Text>
+    <Layout>
+      <InstantSearch searchClient={algoliaSearchClient} indexName='website'>
+        <SearchBox />
+      </InstantSearch>
+      <Categories />
+    </Layout>
   );
 }

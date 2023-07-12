@@ -1,5 +1,10 @@
+import { Link } from 'expo-router';
 import { Text } from 'react-native';
 
 export default () => {
-  return <Text className='text-2xl text-blue-700'>SIEMA</Text>;
+  return (
+    <Link href='/home' className='text-2xl text-blue-700'>
+      SIEMA
+    </Link>
+  );
 };
