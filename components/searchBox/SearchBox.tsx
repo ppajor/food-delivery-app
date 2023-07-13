@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import { useSearchBox } from 'react-instantsearch-hooks';
+import globalStyles from '../../lib/globalStyles';
 
 export function SearchBox(props) {
   const { query, refine } = useSearchBox(props);
@@ -21,11 +22,11 @@ export function SearchBox(props) {
   }
 
   return (
-    <View className=''>
+    <View style={globalStyles.shadow}>
       <TextInput
         className='h-12 text-base p-3 bg-[#fff]'
         ref={inputRef}
-        style={styles.input}
+        style={[globalStyles.shadow, { borderRadius: 4 }]}
         value={inputValue}
         onChangeText={setQuery}
         clearButtonMode='while-editing'
@@ -39,11 +40,3 @@ export function SearchBox(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-});
