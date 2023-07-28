@@ -5,6 +5,6 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Container = ({ children }: LayoutProps) => {
   return <View className='flex-1 p-4 bg-[#FDFDFD]'>{children}</View>;
 };
