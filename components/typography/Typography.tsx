@@ -14,7 +14,7 @@ interface TextProps {
 export const TagText = (props: TextProps) => {
   const [fontsLoaded] = useFonts({
     montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
-    montserrat_regular: require('../../assets/fonts/Montserrat-Regular.ttf'),
+    montserrat_medium: require('../../assets/fonts/Montserrat-Medium.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -31,9 +31,39 @@ export const TagText = (props: TextProps) => {
     <Text
       style={{
         ...props.style,
-        fontFamily: 'montserrat_regular',
+        fontFamily: 'montserrat_medium',
       }}
-      className={`${props.customClassName}`}
+      className={`${props.customClassName} text-lg`}
+      onLayout={onLayoutRootView}
+    >
+      {props.children}
+    </Text>
+  );
+};
+
+export const SmallTagText = (props: TextProps) => {
+  const [fontsLoaded] = useFonts({
+    montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
+    montserrat_medium: require('../../assets/fonts/Montserrat-Medium.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <Text
+      style={{
+        ...props.style,
+        fontFamily: 'montserrat_medium',
+      }}
+      className={`${props.customClassName} text-xs`}
       onLayout={onLayoutRootView}
     >
       {props.children}
@@ -70,6 +100,35 @@ export const BodyText = (props: TextProps) => {
   );
 };
 
+export const TextLarge = (props: TextProps) => {
+  const [fontsLoaded] = useFonts({
+    poppins: require('../../assets/fonts/Poppins-Regular.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <Text
+      style={{
+        ...props.style,
+        fontFamily: 'poppins',
+      }}
+      className={`${props.customClassName} text-lg`}
+      onLayout={onLayoutRootView}
+    >
+      {props.children}
+    </Text>
+  );
+};
+
 export const BigHeading = (props: TextProps) => {
   const [fontsLoaded] = useFonts({
     montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
@@ -93,6 +152,36 @@ export const BigHeading = (props: TextProps) => {
         fontFamily: 'montserrat_semibold',
       }}
       className={`${props.customClassName} text-2xl`}
+      onLayout={onLayoutRootView}
+    >
+      {props.children}
+    </Text>
+  );
+};
+
+export const MediumHeading = (props: TextProps) => {
+  const [fontsLoaded] = useFonts({
+    montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
+    montserrat_semibold: require('../../assets/fonts/Montserrat-SemiBold.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <Text
+      style={{
+        ...props.style,
+        fontFamily: 'montserrat_semibold',
+      }}
+      className={`${props.customClassName} text-lg`}
       onLayout={onLayoutRootView}
     >
       {props.children}
