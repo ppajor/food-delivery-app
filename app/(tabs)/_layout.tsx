@@ -1,8 +1,8 @@
 import { Tabs } from 'expo-router/tabs';
 import {
   BodyText,
+  LargeText,
   TagText,
-  TextLarge,
 } from '../../components/typography/Typography';
 import { Text, View } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -26,9 +26,9 @@ export default function AppLayout() {
                   size={24}
                 />
                 <View className='ml-2'>
-                  <TextLarge customClassName='text-base text-gray mb-1'>
+                  <LargeText customClassName='text-base text-gray mb-1'>
                     Twoja lokalizacja
-                  </TextLarge>
+                  </LargeText>
                   <BodyText customClassName='text-lg text-black'>
                     Władysława Łokietka 6
                   </BodyText>

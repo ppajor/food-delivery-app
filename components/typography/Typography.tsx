@@ -71,6 +71,35 @@ export const SmallTagText = (props: TextProps) => {
   );
 };
 
+export const SmallText = (props: TextProps) => {
+  const [fontsLoaded] = useFonts({
+    poppins: require('../../assets/fonts/Poppins-Regular.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <Text
+      style={{
+        ...props.style,
+        fontFamily: 'poppins',
+      }}
+      className={`${props.customClassName} text-sm`}
+      onLayout={onLayoutRootView}
+    >
+      {props.children}
+    </Text>
+  );
+};
+
 export const BodyText = (props: TextProps) => {
   const [fontsLoaded] = useFonts({
     poppins: require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -100,7 +129,7 @@ export const BodyText = (props: TextProps) => {
   );
 };
 
-export const TextLarge = (props: TextProps) => {
+export const LargeText = (props: TextProps) => {
   const [fontsLoaded] = useFonts({
     poppins: require('../../assets/fonts/Poppins-Regular.ttf'),
   });
@@ -182,6 +211,35 @@ export const MediumHeading = (props: TextProps) => {
         fontFamily: 'montserrat_semibold',
       }}
       className={`${props.customClassName} text-lg`}
+      onLayout={onLayoutRootView}
+    >
+      {props.children}
+    </Text>
+  );
+};
+
+export const LogoFont = (props: TextProps) => {
+  const [fontsLoaded] = useFonts({
+    architectsDaughter: require('../../assets/fonts/ArchitectsDaughter-Regular.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <Text
+      style={{
+        ...props.style,
+        fontFamily: 'architectsDaughter',
+      }}
+      className={`${props.customClassName} `}
       onLayout={onLayoutRootView}
     >
       {props.children}

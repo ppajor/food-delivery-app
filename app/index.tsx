@@ -1,10 +1,9 @@
-import { Link } from 'expo-router';
-import { Text } from 'react-native';
+import { Redirect } from 'expo-router';
 
 export default () => {
-  return (
-    <Link href='/home' className='text-2xl text-blue-700'>
-      SIEMA
-    </Link>
-  );
+  const user = false; //TODO: if user logged in
+
+  if (user) {
+    return <Redirect href='/home' />;
+  } else return <Redirect href='/start' />;
 };
