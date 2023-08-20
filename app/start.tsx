@@ -1,5 +1,6 @@
 import { View, useWindowDimensions } from 'react-native';
 import {
+  BigHeading,
   LargeText,
   LogoFont,
   SmallText,
@@ -8,6 +9,7 @@ import Constants from 'expo-constants';
 import LottieView from 'lottie-react-native';
 import { useRef } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Link } from 'expo-router';
 
 export default function Start() {
   const animation = useRef(null);
@@ -15,11 +17,13 @@ export default function Start() {
 
   return (
     <ScrollView
-      style={{ marginTop: Constants.statusBarHeight }}
-      className='p-[52px] bg-white h-full'
+      style={{ paddingTop: Constants.statusBarHeight }}
+      className='p-12 bg-white h-full'
     >
       <View>
-        <LogoFont customClassName='text-[48px] mt-9'>SwiftServe</LogoFont>
+        <LogoFont customClassName='text-[48px] mt-9 text-center'>
+          SwiftServe
+        </LogoFont>
         <View className='flex flex-row mt-9 mb-6'>
           <SmallText customClassName='text-gray'>Używaj</SmallText>
           <LogoFont> SwiftServe </LogoFont>
@@ -83,7 +87,9 @@ export default function Start() {
           Kurier dowiezie Ci jedzenie tak szybko jak to możliwe
         </SmallText>
         <View className='mt-8 mx-auto'>
-          <LargeText customClassName='text-orange'>Zaczynamy</LargeText>
+          <Link href='/login'>
+            <BigHeading customClassName='text-orange '>Zaczynamy</BigHeading>
+          </Link>
         </View>
       </View>
     </ScrollView>
