@@ -1,9 +1,10 @@
-import { Button, TextInput, View } from 'react-native';
+import { Button, Pressable, TextInput, View } from 'react-native';
 import {
   BigHeading,
   BodyText,
   LargeText,
   LogoFont,
+  MediumHeading,
   SmallText,
 } from '../components/typography/Typography';
 import Constants from 'expo-constants';
@@ -74,11 +75,14 @@ export default function Login() {
                   </SmallText>
                 )}
                 <View>
-                  <Button
+                  <Pressable
                     onPress={() => handleSubmit()}
-                    title='Zaloguj się'
-                    color='#FF8D28'
-                  />
+                    className='py-3 bg-orange rounded-lg'
+                  >
+                    <MediumHeading customClassName='text-center text-white'>
+                      Zaloguj się
+                    </MediumHeading>
+                  </Pressable>
                 </View>
                 <View className='mt-4 flex flex-row'>
                   <SmallText customClassName='text-gray'>
