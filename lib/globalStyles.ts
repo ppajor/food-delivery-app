@@ -8,6 +8,10 @@ const globalStyles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
   },
+  modalContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 40,
+  },
 });
 
 export default globalStyles;

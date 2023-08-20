@@ -57,7 +57,7 @@ export default function Login() {
             validationSchema={signupValidationSchema}
             initialValues={{
               email: '',
-              phone: '',
+              phone: '+48 ',
               password: '',
               confirmPassword: '',
             }}
@@ -90,6 +90,7 @@ export default function Login() {
                 <View className='bg-[#f3f3f3] py-2 px-7 rounded-lg'>
                   <SmallText customClassName='text-gray'>Telefon</SmallText>
                   <TextInput
+                    keyboardType='numeric'
                     onChangeText={handleChange('phone')}
                     onBlur={handleBlur('phone')}
                     value={values.phone}

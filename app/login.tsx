@@ -9,10 +9,13 @@ import {
 } from '../components/typography/Typography';
 import Constants from 'expo-constants';
 import { Formik } from 'formik';
-import { Link } from 'expo-router';
+import { Link, Redirect } from 'expo-router';
 import * as yup from 'yup';
+import { useState } from 'react';
 
 export default function Login() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const loginValidationSchema = yup.object().shape({
     email: yup
       .string()
@@ -20,6 +23,9 @@ export default function Login() {
       .required('Email jest wymagany'),
     password: yup.string().required('Hasło jest wymagane'),
   });
+
+  if (isSubmitted) return <Redirect href='/home' />;
+
   return (
     <View
       style={{ marginTop: Constants.statusBarHeight, flex: 1, borderWidth: 2 }}
@@ -34,7 +40,7 @@ export default function Login() {
           <Formik
             validationSchema={loginValidationSchema}
             initialValues={{ email: '', password: '' }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => setIsSubmitted(true)}
           >
             {({
               handleChange,
@@ -74,7 +80,7 @@ export default function Login() {
                     {errors.password}
                   </SmallText>
                 )}
-                <View>
+                <View className='w-full'>
                   <Pressable
                     onPress={() => handleSubmit()}
                     className='py-3 bg-orange rounded-lg'
@@ -84,6 +90,7 @@ export default function Login() {
                     </MediumHeading>
                   </Pressable>
                 </View>
+
                 <View className='mt-4 flex flex-row'>
                   <SmallText customClassName='text-gray'>
                     Nie posiadasz konta?{' '}
