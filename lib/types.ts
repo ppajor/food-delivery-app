@@ -6,3 +6,19 @@ export interface Restaurant {
   deliveryPrice: string;
   rating: string;
 }
+
+export interface Location {
+  coords: Coords;
+  mocked: boolean;
+  timestamp: number;
+}
+
+interface Coords {
+  accuracy: number;
+  altitude: number;
+  altitudeAccuracy: number;
+  heading: number;
+  latitude: number;
+  longitude: number;
+  speed: number;
+}

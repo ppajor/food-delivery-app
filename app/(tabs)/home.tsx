@@ -1,5 +1,4 @@
 import { InstantSearch } from 'react-instantsearch-hooks';
-import { Text, View } from 'react-native';
 import { algoliaSearchClient } from '../../lib/algoliaClient';
 import React, { useState } from 'react';
 import { SearchBox } from '../../components/searchBox/SearchBox';
@@ -8,11 +7,13 @@ import { Categories } from '../../components/categories/Categories';
 import { ListingSection } from '../../components/listing-section/ListingSection';
 import jsonListing from '../../components/listing-section/listing.json';
 import { CategoriesModal } from '../../components/categoriesModal/CategoriesModal';
+import { ListingSectionModal } from '../../components/listing-section-modal/ListingSectionModal';
 
 const listingItems = jsonListing;
 
 export default function Page() {
   const [categoriesModalVisible, setCategoriesModalVisible] = useState(false);
+  const [listingModalVisible, setListingModalVisible] = useState(false);
 
   return (
     <Container>
@@ -20,10 +21,18 @@ export default function Page() {
         <SearchBox />
       </InstantSearch>
       <Categories openCategoriesModal={() => setCategoriesModalVisible(true)} />
-      <ListingSection items={listingItems.listing} />
+      <ListingSection
+        openListingModal={() => setListingModalVisible(true)}
+        items={listingItems.listing}
+      />
       <CategoriesModal
         visibility={categoriesModalVisible}
         closeCategoriesModal={() => setCategoriesModalVisible(false)}
+      />
+      <ListingSectionModal
+        items={listingItems.listing}
+        visibility={listingModalVisible}
+        closeCategoriesModal={() => setListingModalVisible(false)}
       />
     </Container>
   );

@@ -4,8 +4,10 @@ import {
   LargeText,
   TagText,
 } from '../../components/typography/Typography';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useState } from 'react';
+import { LocalizationModal } from '../../components/localization-modal/LocalizationModal';
 export default function AppLayout() {
   return (
     <Tabs screenOptions={{ tabBarShowLabel: false }}>
@@ -17,6 +19,7 @@ export default function AppLayout() {
           headerStatusBarHeight: 0,
           headerStyle: { height: 120 },
           headerLeft: () => {
+            const [modalActive, setModalActive] = useState(false);
             return (
               <View className='flex items-end flex-row px-4 mt-[26px]'>
                 <MaterialCommunityIcons
@@ -29,10 +32,16 @@ export default function AppLayout() {
                   <LargeText customClassName='text-base text-gray mb-1'>
                     Twoja lokalizacja
                   </LargeText>
-                  <BodyText customClassName='text-lg text-black'>
-                    Władysława Łokietka 6
-                  </BodyText>
+                  <Pressable onPress={() => setModalActive(true)}>
+                    <BodyText customClassName='text-lg text-black'>
+                      Władysława Łokietka 6
+                    </BodyText>
+                  </Pressable>
                 </View>
+                <LocalizationModal
+                  visibility={modalActive}
+                  closeCategoriesModal={() => setModalActive(false)}
+                />
               </View>
             );
           },
