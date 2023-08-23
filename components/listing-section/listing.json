@@ -4,17 +4,21 @@
       "name": "Pizza Buffa",
       "image": "../../assets/images/pizza-buffa.png",
       "logo": "../../assets/images/pizza-buffa-logo.png",
-      "deliveryTime": ["40", "60"],
+      "deliveryTime": "40-60",
       "deliveryPrice": "8.99",
-      "rating": "4.9"
+      "rating": "4.9",
+      "ratingCount": "1024",
+      "category": "Pizza"
     },
     {
       "name": "Uncle Synot Kebab",
       "image": "../../assets/images/pizza-buffa.png",
       "logo": "../../assets/images/pizza-buffa-logo.png",
-      "deliveryTime": ["20", "40"],
+      "deliveryTime": "20-40",
       "deliveryPrice": "4.99",
-      "rating": "4.7"
+      "rating": "4.7",
+      "ratingCount": "937",
+      "category": "Kebab"
     }
   ]
 }

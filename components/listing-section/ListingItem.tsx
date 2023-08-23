@@ -2,7 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { Image } from 'expo-image';
 import { Restaurant } from '../../lib/types';
-import { BodyText, SmallTagText, TagText } from '../typography/Typography';
+import { SmallTagText, TagText } from '../typography/Typography';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import globalStyles from '../../lib/globalStyles';
 
 type ListingItemProps = {
   item: Restaurant;
@@ -13,7 +15,7 @@ export const ListingItem = ({ item }: ListingItemProps) => {
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
   return (
-    <View className='w-full bg-white'>
+    <View style={[globalStyles.shadow]} className='w-full bg-white'>
       <View className='w-full h-[166px] flex items-center'>
         <Image
           placeholder={blurhash}
@@ -33,16 +35,29 @@ export const ListingItem = ({ item }: ListingItemProps) => {
 
       <View style={{ gap: 8 }} className='flex flex-col pt-2 px-5 pb-5'>
         <View className='flex flex-row justify-between items-baseline'>
-          <TagText>{item.name}</TagText>
-          <SmallTagText>{item.rating}</SmallTagText>
+          <TagText customClassName='text-bold'>{item.name}</TagText>
+          <View className='flex flex-row gap-1 items-center'>
+            <Ionicons name='star' size={16} color='#F2C94C' />
+            <SmallTagText>{item.rating}</SmallTagText>
+          </View>
         </View>
         <View style={{ gap: 8 }} className='flex flex-row'>
-          <SmallTagText customClassName='text-gray'>
-            {item.deliveryTime[0]}-{item.deliveryTime[1]}min
-          </SmallTagText>
-          <SmallTagText customClassName='text-gray'>
-            {item.deliveryPrice}
-          </SmallTagText>
+          <View className='flex flex-row gap-1'>
+            <Ionicons name='time-outline' size={16} color='#FF8D28' />
+            <SmallTagText customClassName='text-gray'>
+              {item.deliveryTime} min
+            </SmallTagText>
+          </View>
+          <View className='flex flex-row gap-1'>
+            <MaterialCommunityIcons
+              name='bike-fast'
+              size={16}
+              color='#FF8D28'
+            />
+            <SmallTagText customClassName='text-gray'>
+              {item.deliveryPrice}zł
+            </SmallTagText>
+          </View>
         </View>
       </View>
     </View>

@@ -5,5 +5,5 @@ export default () => {
 
   if (user) {
     return <Redirect href='/home' />;
-  } else return <Redirect href='/start' />;
+  } else return <Redirect href='/home' />;
 };

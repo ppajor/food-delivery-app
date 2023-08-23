@@ -1,5 +1,5 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
-import { BigHeading, BodyText } from '../typography/Typography';
+import React, { useEffect, useState } from 'react';
+import { BigHeading } from '../typography/Typography';
 
 import { CustomModal } from '../custom-modal/CustomModal';
 import * as Location from 'expo-location';
@@ -18,7 +18,7 @@ export const LocalizationModal = ({
 }: LocalizationModalProps) => {
   const [location, setLocation] = useState<LocationType | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>('');
-  console.log('location', location);
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -30,7 +30,6 @@ export const LocalizationModal = ({
       let location = await Location.getCurrentPositionAsync({});
 
       setLocation(location);
-      console.log('location', location);
     })();
   }, []);
 
