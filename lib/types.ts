@@ -8,6 +8,20 @@ export interface Restaurant {
   ratingCount: string;
 }
 
+export interface RestaurantMenuCategory {
+  name: string;
+  id: number;
+  items?: MenuCategoryItem[];
+}
+
+export interface MenuCategoryItem {
+  id: number;
+  name: string;
+  price: number;
+  currency: string;
+  description: string;
+}
+
 export interface Location {
   coords: Coords;
   mocked: boolean;

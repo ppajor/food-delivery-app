@@ -8,16 +8,29 @@ import {
 } from '../../typography/Typography';
 import { Image } from 'expo-image';
 import Separator from '../../separator/Separator';
+import { Ionicons } from '@expo/vector-icons';
+import { useCartContext } from '../../../lib/contexts/CartContext';
+import { MenuCategoryItem, RestaurantMenuCategory } from '../../../lib/types';
 
-const CategoriesContent = ({ categories }) => {
+type CategoriesContentProps = {
+  menuCategories: RestaurantMenuCategory[];
+};
+
+const CategoriesContent = ({ menuCategories }: CategoriesContentProps) => {
   const [tabActive, setTabActive] = useState({ name: 'Pizza', id: 1 });
-  const [tabContent, setTabContent] = useState(null);
+  const [tabContent, setTabContent] = useState<MenuCategoryItem[] | null>(null);
   const handleTabActive = (name: string, id: number) => {
     setTabActive({ name: name, id: id });
   };
 
+  const { state, dispatch } = useCartContext();
+
+  const handleAddToCart = (item: MenuCategoryItem) => {
+    dispatch({ type: 'ADD_TO_CART', payload: item });
+  };
+
   useEffect(() => {
-    const selectedCategory = categories.find(
+    const selectedCategory = menuCategories.find(
       (category) => category.id === tabActive.id,
     );
 
@@ -26,7 +39,7 @@ const CategoriesContent = ({ categories }) => {
     } else {
       setTabContent(null);
     }
-  }, [tabActive, categories]);
+  }, [tabActive, menuCategories]);
 
   const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
@@ -40,7 +53,7 @@ const CategoriesContent = ({ categories }) => {
         >
           <View className='absolute min-w-[100vw] w-full h-[4px] bottom-0 bg-lightgray' />
 
-          {categories.map((category, idx) => (
+          {menuCategories?.map((category: RestaurantMenuCategory) => (
             <Pressable
               style={{
                 borderBottomWidth: tabActive.id === category.id ? 4 : 0,
@@ -57,7 +70,7 @@ const CategoriesContent = ({ categories }) => {
       <View>
         <BigHeading customClassName='mt-6 mb-4'>{tabActive.name}</BigHeading>
         <View>
-          {tabContent?.map((item) => (
+          {tabContent?.map((item: MenuCategoryItem) => (
             <View>
               <View className='flex flex-row'>
                 <Image
@@ -74,9 +87,19 @@ const CategoriesContent = ({ categories }) => {
                       {item.currency}
                     </SmallText>
                   </View>
-                  <BodyText customClassName='text-gray'>
-                    {item.description}
-                  </BodyText>
+                  <View className='flex flex-row justify-between'>
+                    <BodyText customClassName='text-gray'>
+                      {item.description}
+                    </BodyText>
+                    <Pressable onPress={() => handleAddToCart(item)}>
+                      <Ionicons
+                        name='add-circle'
+                        size={24}
+                        color='#FF8D28'
+                        className='self-end'
+                      />
+                    </Pressable>
+                  </View>
                 </View>
               </View>
               <Separator customClassName='my-3' />

@@ -12,6 +12,7 @@ module.exports = {
         orange: '#FF8D28',
         white: '#FFFFFF',
         yellow: '#F2C94C',
+        green: '#1FCB64',
       },
     },
   },
