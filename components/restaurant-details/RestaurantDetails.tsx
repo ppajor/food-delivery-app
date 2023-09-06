@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { Image } from 'expo-image';
 import { BigHeading, BodyText, SmallText } from '../typography/Typography';
 import Separator from '../separator/Separator';
@@ -9,6 +9,8 @@ import CategoriesContent from './components/CategoriesContent';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { useCartContext } from '../../lib/contexts/CartContext';
+import globalStyles from '../../lib/globalStyles';
+import { router } from 'expo-router';
 
 interface RestaurantDetailsProps {
   item: Restaurant;
@@ -52,6 +54,10 @@ export const RestaurantDetails = ({ item }: RestaurantDetailsProps) => {
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
   const { state, dispatch } = useCartContext();
 
+  const handlePressCart = () => {
+    router.push('/checkout');
+  };
+
   return (
     <ScrollView>
       <View className='w-full h-full'>
@@ -85,13 +91,20 @@ export const RestaurantDetails = ({ item }: RestaurantDetailsProps) => {
 
           <CategoriesContent menuCategories={restaurantMenuCategories} />
         </View>
-        <View className='absolute bottom-3 w-[72px] h-[72px] py-1 bg-green flex flex-col items-center rounded-full'>
-          <Ionicons name='cart-outline' size={24} color='white' />
-          <SmallText customClassName='text-white'>
-            {state.totalCost}zł
-          </SmallText>
-          <SmallText customClassName='text-white'>{state.itemsCount}</SmallText>
-        </View>
+        <Pressable onPress={handlePressCart}>
+          <View
+            style={[globalStyles.shadow]}
+            className='absolute bottom-3 w-[72px] h-[72px] py-1 bg-green flex flex-col items-center rounded-full left-[40%]'
+          >
+            <Ionicons name='cart-outline' size={24} color='white' />
+            <SmallText customClassName='text-white'>
+              {state.totalCost}zł
+            </SmallText>
+            <SmallText customClassName='text-white'>
+              {state.itemsCount}
+            </SmallText>
+          </View>
+        </Pressable>
       </View>
     </ScrollView>
   );

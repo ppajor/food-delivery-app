@@ -10,7 +10,6 @@ import LottieView from 'lottie-react-native';
 import { useRef } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Link } from 'expo-router';
-import { CartProvider } from '../lib/contexts/CartContext';
 
 export default function Start() {
   const animation = useRef(null);

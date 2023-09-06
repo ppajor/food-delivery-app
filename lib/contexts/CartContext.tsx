@@ -32,8 +32,6 @@ const initialState: State = {
 const cartReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      console.log('payload', action.payload);
-
       return {
         ...state,
         items: [...state.items, action.payload],
@@ -43,7 +41,7 @@ const cartReducer = (state: State, action: Action): State => {
     case 'REMOVE_FROM_CART':
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        items: state.items.filter((item) => item.id !== action.payload.id),
         totalCost:
           state.totalCost > action.payload.price
             ? state.totalCost - action.payload.price
