@@ -25,7 +25,7 @@ export const CustomModal = ({
     >
       <View
         style={[globalStyles.modalContainer]}
-        className='flex-1 items-center justify-center bg-white'
+        className='flex-1 items-center bg-white'
       >
         {children}
       </View>

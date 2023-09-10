@@ -43,6 +43,7 @@ const CategoriesContent = ({ menuCategories }: CategoriesContentProps) => {
 
           {menuCategories?.map((category: RestaurantMenuCategory) => (
             <Pressable
+              key={category.id}
               style={{
                 borderBottomWidth: tabActive.id === category.id ? 4 : 0,
                 borderColor: '#F2C94C',
@@ -59,7 +60,7 @@ const CategoriesContent = ({ menuCategories }: CategoriesContentProps) => {
         <BigHeading customClassName='mt-6 mb-4'>{tabActive.name}</BigHeading>
         <View>
           {tabContent?.map((item: MenuCategoryItemType) => (
-            <MenuCategoryItem item={item} />
+            <MenuCategoryItem key={item.id} item={item} />
           ))}
         </View>
       </View>

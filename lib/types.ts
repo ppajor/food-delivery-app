@@ -37,3 +37,5 @@ interface Coords {
   longitude: number;
   speed: number;
 }
+
+export type PaymentOption = 'creditCard' | 'blik' | 'onDelivery';

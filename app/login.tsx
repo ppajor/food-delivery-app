@@ -1,9 +1,6 @@
-import { Button, Pressable, TextInput, View } from 'react-native';
+import { Pressable, TextInput, View } from 'react-native';
 import {
   BigHeading,
-  BodyText,
-  LargeText,
-  LogoFont,
   MediumHeading,
   SmallText,
 } from '../components/typography/Typography';
