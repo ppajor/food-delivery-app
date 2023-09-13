@@ -9,6 +9,11 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { LocalizationModal } from '../../components/localization-modal/LocalizationModal';
 export default function AppLayout() {
+  const [currentAddress, setCurrentAddress] = useState('Ustaw lokalizację');
+
+  const handleChangeAddress = (address: string) => {
+    setCurrentAddress(address);
+  };
   return (
     <Tabs screenOptions={{ tabBarShowLabel: false }}>
       <Tabs.Screen
@@ -28,18 +33,21 @@ export default function AppLayout() {
                   style={{ marginBottom: 4 }}
                   size={24}
                 />
-                <View className='ml-2'>
-                  <LargeText customClassName='text-base text-gray mb-1'>
-                    Twoja lokalizacja
-                  </LargeText>
-                  <Pressable onPress={() => setModalActive(true)}>
+                <Pressable onPress={() => setModalActive(true)}>
+                  <View className='ml-2'>
+                    <LargeText customClassName='text-base text-gray mb-1'>
+                      Lokalizacja Twojej dostawy
+                    </LargeText>
                     <BodyText customClassName='text-lg text-black'>
-                      Władysława Łokietka 6
+                      {currentAddress}
                     </BodyText>
-                  </Pressable>
-                </View>
+                  </View>
+                </Pressable>
+
                 <LocalizationModal
+                  currentAddress={currentAddress}
                   visibility={modalActive}
+                  onAddressChange={handleChangeAddress}
                   closeCategoriesModal={() => setModalActive(false)}
                 />
               </View>

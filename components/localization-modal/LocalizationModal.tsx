@@ -9,20 +9,25 @@ import MapView, { Marker } from 'react-native-maps';
 import globalStyles from '../../lib/globalStyles';
 
 interface LocalizationModalProps {
+  currentAddress: string;
   visibility: boolean;
+  onAddressChange: (address: string) => void;
   closeCategoriesModal: () => void;
 }
 
 export const LocalizationModal = ({
+  currentAddress,
   visibility,
+  onAddressChange,
   closeCategoriesModal,
 }: LocalizationModalProps) => {
   const [location, setLocation] = useState<LocationType | null>(null);
-  const [address, setAdress] = useState('');
+  const [address, setAddress] = useState(currentAddress);
   const [errorMsg, setErrorMsg] = useState<string>('');
   const mapRef = useRef<MapView | null>(null);
 
   useEffect(() => {
+    getAddressCoords();
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
@@ -44,7 +49,6 @@ export const LocalizationModal = ({
   const getAddressCoords = async () => {
     if (address) {
       const geocodeLocation = await Location.geocodeAsync(address);
-      console.log('coords', geocodeLocation);
       if (geocodeLocation.length > 0) {
         setLocation({ coords: geocodeLocation[0] });
         if (mapRef.current) {
@@ -59,13 +63,23 @@ export const LocalizationModal = ({
     }
   };
 
+  const handleClose = async () => {
+    const reverseGeocodedAddress = await Location.reverseGeocodeAsync({
+      longitude: location?.coords.longitude || 0,
+      latitude: location?.coords.latitude || 0,
+    });
+
+    const address = `${reverseGeocodedAddress[0].street || ''} ${
+      reverseGeocodedAddress[0].streetNumber ||
+      reverseGeocodedAddress[0].name ||
+      ''
+    }, ${reverseGeocodedAddress[0].city || ''}`;
+    onAddressChange(address);
+    closeCategoriesModal();
+  };
+
   return (
-    <CustomModal
-      visibility={visibility}
-      onClose={() => {
-        closeCategoriesModal();
-      }}
-    >
+    <CustomModal visibility={visibility} onClose={handleClose}>
       <View className='flex-1 w-full'>
         {location && (
           <View>
@@ -73,7 +87,7 @@ export const LocalizationModal = ({
             <TextInput
               placeholder='Wpisz adres dostawy manualnie'
               value={address}
-              onChangeText={setAdress}
+              onChangeText={setAddress}
               className='h-12 text-base p-3 bg-[#fff] mb-2'
               style={[globalStyles.shadow, { borderRadius: 4 }]}
             />
