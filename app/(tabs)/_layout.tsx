@@ -1,10 +1,6 @@
 import { Tabs } from 'expo-router/tabs';
-import {
-  BodyText,
-  LargeText,
-  TagText,
-} from '../../components/typography/Typography';
-import { Pressable, Text, View } from 'react-native';
+import { BodyText, LargeText } from '../../components/typography/Typography';
+import { Pressable, View } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { LocalizationModal } from '../../components/localization-modal/LocalizationModal';
@@ -53,6 +49,15 @@ export default function AppLayout() {
               </View>
             );
           },
+        }}
+      />
+      <Tabs.Screen
+        name='checkout'
+        options={{
+          tabBarIcon: () => (
+            <FontAwesome name='shopping-cart' size={24} color='gray' />
+          ),
+          title: 'Koszyk',
         }}
       />
     </Tabs>

@@ -12,7 +12,7 @@ import {
   LogoFont,
   MediumHeading,
   SmallText,
-} from '../components/typography/Typography';
+} from '../../components/typography/Typography';
 import Constants from 'expo-constants';
 import { Formik } from 'formik';
 import { Link } from 'expo-router';
@@ -146,7 +146,7 @@ export default function Login() {
                 </View>
                 <View className='mt-4 flex flex-row'>
                   <SmallText customClassName='text-gray'>
-                    Masz juz konto?{' '}
+                    Masz juz konto?
                   </SmallText>
                   <Link href='/login'>
                     <SmallText customClassName='text-orange'>

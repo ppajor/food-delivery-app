@@ -59,53 +59,53 @@ export const RestaurantDetails = ({ item }: RestaurantDetailsProps) => {
   };
 
   return (
-    <ScrollView>
-      <View className='w-full h-full'>
-        <View className='w-full h-[25vh] flex items-center overflow-hidden'>
-          <Image
-            placeholder={blurhash}
-            source={require('../../assets/images/pizza-buffa.png')}
-            className='w-full h-full'
-            contentFit='cover'
-          />
-          <View className='absolute bottom-[-24px] flex justify-center items-center w-[84px] h-[84px] rounded-full bg-[rgba(255,255,255,1)]'>
+    <View className='w-full h-full min-h-[100vh]'>
+      <ScrollView className='w-full h-full'>
+        <View className='w-full h-full'>
+          <View className='relative w-full h-[25vh] flex items-center overflow-hidden bg-black '>
             <Image
               placeholder={blurhash}
-              source={require('../../assets/images/pizza-buffa-logo.png')}
-              className='w-[42px] h-[22px] '
+              source={require('../../assets/images/pizza-buffa.png')}
+              className='w-full h-full opacity-75'
               contentFit='cover'
             />
+            <View className='absolute bottom-[-24px] flex justify-center items-center w-[84px] h-[84px] rounded-full bg-[rgba(255,255,255,1)]'>
+              <Image
+                placeholder={blurhash}
+                source={require('../../assets/images/pizza-buffa-logo.png')}
+                className='w-[42px] h-[22px] '
+                contentFit='cover'
+              />
+            </View>
           </View>
-        </View>
-        <View className='p-4'>
-          <View className='mb-5'>
-            <BigHeading customClassName='text-center'>{item.name}</BigHeading>
-          </View>
-          <DetailsInfo
-            deliveryTime={item.deliveryTime}
-            rating={item.rating}
-            ratingCount={item.ratingCount}
-            deliveryPrice={item.deliveryPrice}
-          />
-          <Separator customClassName='mt-6 mb-2' />
+          <View className='p-4'>
+            <View className='mb-5'>
+              <BigHeading customClassName='text-center'>{item.name}</BigHeading>
+            </View>
+            <DetailsInfo
+              deliveryTime={item.deliveryTime}
+              rating={item.rating}
+              ratingCount={item.ratingCount}
+              deliveryPrice={item.deliveryPrice}
+            />
+            <Separator customClassName='mt-6 mb-2' />
 
-          <CategoriesContent menuCategories={restaurantMenuCategories} />
-        </View>
-        <Pressable onPress={handlePressCart}>
-          <View
-            style={[globalStyles.shadow]}
-            className='absolute bottom-3 w-[72px] h-[72px] py-1 bg-green flex flex-col items-center rounded-full left-[40%]'
-          >
-            <Ionicons name='cart-outline' size={24} color='white' />
-            <SmallText customClassName='text-white'>
-              {state.totalCost}zł
-            </SmallText>
-            <SmallText customClassName='text-white'>
-              {state.itemsCount}
-            </SmallText>
+            <CategoriesContent menuCategories={restaurantMenuCategories} />
           </View>
-        </Pressable>
-      </View>
-    </ScrollView>
+        </View>
+      </ScrollView>
+      <Pressable onPress={handlePressCart}>
+        <View
+          style={[globalStyles.shadow]}
+          className='absolute bottom-[30px] w-[72px] h-[72px] py-1 bg-green flex flex-col items-center rounded-full left-[40%]'
+        >
+          <Ionicons name='cart-outline' size={24} color='white' />
+          <SmallText customClassName='text-white'>
+            {state.totalCost}zł
+          </SmallText>
+          <SmallText customClassName='text-white'>{state.itemsCount}</SmallText>
+        </View>
+      </Pressable>
+    </View>
   );
 };

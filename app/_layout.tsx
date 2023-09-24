@@ -4,7 +4,7 @@ export default function AppLayout() {
   return (
     <CartProvider>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        <Stack.Screen name='(tabs)' />
         <Stack.Screen name='start' options={{ headerShown: false }} />
       </Stack>
     </CartProvider>

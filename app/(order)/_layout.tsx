@@ -8,6 +8,8 @@ export default function AppLayout() {
           title: 'Koszyk',
         }}
       />
+      <Stack.Screen name='orderFinished' options={{ headerShown: false }} />
+      <Stack.Screen name='paymentBlik' options={{ headerShown: false }} />
     </Stack>
   );
 }

@@ -48,6 +48,8 @@ const cartReducer = (state: State, action: Action): State => {
             : 0,
         itemsCount: state.itemsCount > 0 ? state.itemsCount - 1 : 0,
       };
+    case 'RESET_CART':
+      return initialState;
     default:
       return state;
   }

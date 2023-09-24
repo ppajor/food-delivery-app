@@ -3,7 +3,7 @@ import {
   BigHeading,
   MediumHeading,
   SmallText,
-} from '../components/typography/Typography';
+} from '../../components/typography/Typography';
 import Constants from 'expo-constants';
 import { Formik } from 'formik';
 import { Link, Redirect } from 'expo-router';
@@ -90,7 +90,7 @@ export default function Login() {
 
                 <View className='mt-4 flex flex-row'>
                   <SmallText customClassName='text-gray'>
-                    Nie posiadasz konta?{' '}
+                    Nie posiadasz konta?
                   </SmallText>
                   <Link href='/signup'>
                     <SmallText customClassName='text-orange'>
