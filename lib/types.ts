@@ -1,4 +1,5 @@
 export interface Restaurant {
+  id_restaurant: number;
   name: string;
   image: string;
   logo: string;
@@ -8,6 +9,7 @@ export interface Restaurant {
   ratingcount: number;
   image_url: string;
   logo_url: string;
+  category: string;
 }
 
 export interface RestaurantMenuCategory {

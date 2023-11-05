@@ -10,7 +10,7 @@ interface CategoriesModalProps {
   closeCategoriesModal: () => void;
   items: {
     name: string;
-    icon: ReactNode;
+    image_url: ReactNode;
   }[];
 }
 
@@ -30,8 +30,8 @@ export const CategoriesModal = ({
 
       <ScrollView>
         <View style={{ gap: 8 }} className='flex flex-row flex-wrap pb-2'>
-          {items.map(({ name, icon }, idx) => (
-            <CategoryCard key={idx} name={name} icon={icon} />
+          {items.map(({ name, image_url }, idx) => (
+            <CategoryCard key={idx} name={name} icon={image_url} />
           ))}
         </View>
       </ScrollView>
