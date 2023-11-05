@@ -64,15 +64,13 @@ export const RestaurantDetails = ({ item }: RestaurantDetailsProps) => {
         <View className='w-full h-full'>
           <View className='relative w-full h-[25vh] flex items-center overflow-hidden bg-black '>
             <Image
-              placeholder={blurhash}
-              source={require('../../assets/images/pizza-buffa.png')}
+              source={item.image_url}
               className='w-full h-full opacity-75'
               contentFit='cover'
             />
             <View className='absolute bottom-[-24px] flex justify-center items-center w-[84px] h-[84px] rounded-full bg-[rgba(255,255,255,1)]'>
               <Image
-                placeholder={blurhash}
-                source={require('../../assets/images/pizza-buffa-logo.png')}
+                source={item.logo_url}
                 className='w-[42px] h-[22px] '
                 contentFit='cover'
               />
@@ -83,10 +81,10 @@ export const RestaurantDetails = ({ item }: RestaurantDetailsProps) => {
               <BigHeading customClassName='text-center'>{item.name}</BigHeading>
             </View>
             <DetailsInfo
-              deliveryTime={item.deliveryTime}
+              deliveryTime={item.deliverytime}
               rating={item.rating}
-              ratingCount={item.ratingCount}
-              deliveryPrice={item.deliveryPrice}
+              ratingCount={item.ratingcount}
+              deliveryPrice={item.deliveryprice}
             />
             <Separator customClassName='mt-6 mb-2' />
 

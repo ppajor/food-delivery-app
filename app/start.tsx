@@ -84,7 +84,7 @@ export default function Start() {
           <View className='w-4 h-4 rounded-full bg-lightgray'></View>
         </View>
         <SmallText customClassName='text-gray'>
-          Kurier dowiezie Ci jedzenie tak szybko jak to możliwe
+          Przeglądaj setki ofert z Twojej okolicy i wybierz to na co masz ochotę
         </SmallText>
         <View className='mt-8 mx-auto'>
           <Link href='/login'>

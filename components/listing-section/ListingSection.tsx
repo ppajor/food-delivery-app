@@ -24,7 +24,7 @@ export const ListingSection = ({
       </Pressable>
       <View style={{ gap: 8 }}>
         {items.map((item, idx) => (
-          <View className=''>
+          <View key={idx} className=''>
             <Link
               key={idx}
               href={{

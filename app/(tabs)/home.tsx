@@ -1,6 +1,6 @@
 import { InstantSearch } from 'react-instantsearch-hooks';
 import { algoliaSearchClient } from '../../lib/algoliaClient';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchBox } from '../../components/searchBox/SearchBox';
 import { Container } from '../../components/layout/Layout';
 import { Categories } from '../../components/categories/Categories';
@@ -11,6 +11,8 @@ import { ListingSectionModal } from '../../components/listing-section-modal/List
 import HamburgerIcon from '../../assets/svgs/hamburger.svg';
 import ChickenIcon from '../../assets/svgs/chicken.svg';
 import PizzaIcon from '../../assets/svgs/pizza.svg';
+import Constants from 'expo-constants';
+
 const listingItems = jsonListing;
 
 const categoryItems = [
@@ -24,6 +26,19 @@ const categoryItems = [
 export default function Page() {
   const [categoriesModalVisible, setCategoriesModalVisible] = useState(false);
   const [listingModalVisible, setListingModalVisible] = useState(false);
+  const [restaurantData, setRestaurantData] = useState(null);
+
+  const getRestaurants = async () => {
+    const api = 'https://64a5-176-122-214-72.ngrok-free.app';
+    const res = await fetch(`${api}/api/restaurants`);
+    const data = await res.json();
+    // console.log('data', data);
+    if (data) setRestaurantData(data);
+  };
+
+  useEffect(() => {
+    getRestaurants();
+  }, []);
 
   return (
     <Container>
@@ -34,10 +49,12 @@ export default function Page() {
         items={categoryItems}
         openCategoriesModal={() => setCategoriesModalVisible(true)}
       />
-      <ListingSection
-        openListingModal={() => setListingModalVisible(true)}
-        items={listingItems.listing}
-      />
+      {restaurantData && (
+        <ListingSection
+          openListingModal={() => setListingModalVisible(true)}
+          items={restaurantData}
+        />
+      )}
       <CategoriesModal
         items={categoryItems}
         visibility={categoriesModalVisible}

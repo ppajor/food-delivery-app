@@ -25,6 +25,8 @@ export default function Cart({ onOrderSubmit }: CartProps) {
   const handleFinishOrderPress = () => {
     onOrderSubmit(selectedPaymentOption);
   };
+
+  console.log('state', state);
   return (
     <Container>
       {state.totalCost > 0 ? (

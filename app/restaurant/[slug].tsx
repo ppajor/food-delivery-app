@@ -12,7 +12,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 function Restaurant() {
   const item = useLocalSearchParams();
-
+  console.log('item', item);
   //TODO: try to implement it in header in layout.tsx
   const handleBack = () => {
     router.back();

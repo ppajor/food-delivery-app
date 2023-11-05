@@ -2,10 +2,12 @@ export interface Restaurant {
   name: string;
   image: string;
   logo: string;
-  deliveryTime: string;
-  deliveryPrice: string;
+  deliverytime: string;
+  deliveryprice: string;
   rating: string;
-  ratingCount: string;
+  ratingcount: number;
+  image_url: string;
+  logo_url: string;
 }
 
 export interface RestaurantMenuCategory {

@@ -15,7 +15,7 @@ const PaymentBlik = () => {
   const { state, dispatch } = useCartContext();
 
   const handleExecutePayment = () => {
-    router.replace('/paymentBlikSuccess');
+    router.replace('/paymentBlikConfirmation');
   };
 
   return (

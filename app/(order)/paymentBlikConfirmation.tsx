@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { BodyText, LargeText } from '../../components/typography/Typography';
 import { ActivityIndicator, View } from 'react-native';
+import { LargeText } from '../../components/typography/Typography';
 import { router } from 'expo-router';
 
-const paymentBlikSuccess = () => {
+const paymentBlikConfirmation = () => {
+  //TODO: create reusable component for activity indicator (it is not orderFinished copy)
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      router.replace('/');
-    }, 2000);
+      router.replace('/paymentBlikSuccess');
+    }, 5000);
   }, []);
 
   return (
@@ -25,14 +26,11 @@ const paymentBlikSuccess = () => {
             textContent={'Loading...'}
             //Text style of the Spinner Text
           />
-          <LargeText>
-            Transakcja została zakończona pomyślnie, następuje przekierowanie do
-            strony głownej
-          </LargeText>
+          <LargeText>Potwierdź transakcję w aplikacji mobilnej banku</LargeText>
         </>
       )}
     </View>
   );
 };
 
-export default paymentBlikSuccess;
+export default paymentBlikConfirmation;
